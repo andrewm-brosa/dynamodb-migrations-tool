@@ -14,7 +14,7 @@ export interface MigratorOptions {
   region?: string;
   accessKeyId?: string;
   secretAccessKey?: string;
-  endpointUrl?: string;
+  endpoint?: string;
   dynamodb?: DocumentClient;
   tableName?: string;
   attributeName?: string;
@@ -34,14 +34,14 @@ export class Migrator extends Umzug implements Generator {
    * @param options
    * @param options.region - an AWS Region
    * @param options.dynamodb - a DynamoDB document client instance
-   * @param options.endpointUrl - an optional endpoint URL for local DynamoDB instances
+   * @param options.endpoint - an optional endpoint URL for local DynamoDB instances
    * @param options.tableName - a name of migration table in DynamoDB
    * @param options.attributeName - name of the table primaryKey attribute in DynamoDB
    */
   constructor(options: MigratorOptions = {}) {
     let { dynamodb, tableName, attributeName, migrationsPath } = options;
 
-    dynamodb = dynamodb || new DocumentClient(pick(['region', 'accessKeyId', 'secretAccessKey', 'endpointUrl'], options));
+    dynamodb = dynamodb || new DocumentClient(pick(['region', 'accessKeyId', 'secretAccessKey', 'endpoint'], options));
     tableName = tableName || 'migrations';
     attributeName = attributeName || 'name';
     migrationsPath = migrationsPath || 'migrations';
