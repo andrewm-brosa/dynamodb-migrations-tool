@@ -13,6 +13,7 @@
     "README.md"
   ],
   "scripts": {
+    "prepare": "npm run build",
     "build": "npm run build-clean && tsc && npm run build-bin",
     "build-bin": "mv ./dist/index.js ./dist/dynamit && chmod +x ./dist/dynamit",
     "build-clean": "rm -rf ./dist/",
